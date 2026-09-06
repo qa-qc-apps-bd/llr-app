@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>SHL QA — Lesson Learned Repository</title>
-<!-- Cross-platform patch v1.0.33: auto-sync custom Viewer presets + iOS PWA safe-area/Dynamic Island fix -->
+<!-- Cross-platform patch v1.0.34: transparent branding logos + Lesson Learned type + new cross-platform SHL LLR-QA icon -->
 <!-- v1.0.11: mobile/web login viewport + keyboard responsiveness fix -->
 <!-- v1.0.7: card view shows both uploaded photos side-by-side -->
 
@@ -15,8 +15,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="QA LLR">
-<link rel="apple-touch-icon" href="icon-192-v1.0.11.png">
-<link rel="icon" href="icon-192-v1.0.11.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180-apple.png">
+<link rel="icon" href="icon-192.png">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <!-- Firebase (cloud sync so every teammate sees the same shared data) -->
@@ -83,6 +83,16 @@ header{
   border:none;
 }
 .logo-mark img{width:100%;height:100%;object-fit:cover;background:transparent;}
+.logo-mark.has-logo,
+.welcome-logo-large.has-logo,
+.login-brand-logo.has-logo,
+.welcome-logo-preview.has-logo{
+  background:transparent!important;
+  box-shadow:none!important;
+  border-color:transparent!important;
+}
+.logo-mark.has-logo{border-radius:0;}
+.welcome-logo-large.has-logo,.login-brand-logo.has-logo,.welcome-logo-preview.has-logo{border-radius:0!important;}
 .logo-mark .hint{
   position:absolute;inset:0;background:rgba(0,0,0,0.55);color:#fff;font-size:9px;
   display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;text-align:center;
@@ -506,7 +516,7 @@ header{
 .search-wrap input:focus{outline:none;border-color:var(--gold-dim);}
 .search-wrap .icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-mute);font-size:15px;}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px;}
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 18px;}
 .stat-card .label{font-size:11.5px;color:var(--text-mute);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
 .stat-card .value{font-size:24px;font-weight:700;color:var(--navy);}
@@ -514,6 +524,8 @@ header{
 .stat-card.dos .value{color:var(--green);}
 .stat-card.donts{border-color:rgba(194,59,59,0.25);}
 .stat-card.donts .value{color:var(--red);}
+.stat-card.learned{border-color:color-mix(in srgb,var(--gold) 34%,transparent);}
+.stat-card.learned .value{color:var(--gold-dim);}
 .stat-card.gold .value{color:var(--gold-dim);}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
@@ -534,6 +546,7 @@ header{
 }
 .badge.do{background:var(--green-bg);color:var(--green);border:1px solid rgba(31,138,76,0.35);}
 .badge.dont{background:var(--red-bg);color:var(--red);border:1px solid rgba(194,59,59,0.35);}
+.badge.lesson{background:var(--gold-bg);color:var(--gold-dim);border:1px solid color-mix(in srgb,var(--gold) 42%,transparent);}
 .photo-count{
   position:absolute;bottom:8px;right:8px;background:rgba(20,25,35,0.65);color:#fff;
   font-size:10.5px;padding:2px 8px;border-radius:10px;
@@ -707,6 +720,7 @@ header{
 .type-toggle input{display:none;}
 .type-toggle label.do-label:has(input:checked){background:var(--green-bg);color:var(--green);border-color:rgba(31,138,76,0.5);}
 .type-toggle label.dont-label:has(input:checked){background:var(--red-bg);color:var(--red);border-color:rgba(194,59,59,0.5);}
+.type-toggle label.lesson-label:has(input:checked){background:var(--gold-bg);color:var(--gold-dim);border-color:color-mix(in srgb,var(--gold) 50%,transparent);}
 
 .photo-upload{
   border:1.5px dashed var(--border-strong);border-radius:10px;
@@ -793,6 +807,7 @@ header{
   .print-stat.total{border-top-color:#1c2b3a;}
   .print-stat.dont{border-top-color:#c23b3b;background:#fdf3f3;}
   .print-stat.do{border-top-color:#1f8a4c;background:#f1faf4;}
+  .print-stat.lesson{border-top-color:#b8863b;background:#fdf9ec;}
   .print-stat.types{border-top-color:#caa233;background:#fdf9ec;}
   .print-stat .n{font-size:23px;font-weight:700;color:#1c2b3a;}
   .print-stat .l{font-size:10.5px;color:#666;margin-top:4px;text-transform:uppercase;letter-spacing:0.3px;}
@@ -809,6 +824,7 @@ header{
   .print-item{page-break-inside:avoid;border:1px solid #e2e2e2;border-left:5px solid #ccc;border-radius:8px;padding:14px;margin-bottom:14px;background:#fff;}
   .print-item.do{border-left-color:#1f8a4c;}
   .print-item.dont{border-left-color:#c23b3b;}
+  .print-item.lesson{border-left-color:#b8863b;}
   .print-title{font-size:15px;font-weight:700;margin-bottom:4px;}
   .print-meta{font-size:11px;color:#555;margin-bottom:6px;}
   .print-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-bottom:6px;}
@@ -1597,6 +1613,7 @@ body.button-rounded .btn{border-radius:9px;}
       <div class="stat-card"><div class="label">Total lessons</div><div class="value" id="statTotal">0</div></div>
       <div class="stat-card donts"><div class="label">Don'ts</div><div class="value" id="statDont">0</div></div>
       <div class="stat-card dos"><div class="label">Do's</div><div class="value" id="statDo">0</div></div>
+      <div class="stat-card learned"><div class="label">Lesson Learned</div><div class="value" id="statLesson">0</div></div>
       <div class="stat-card gold"><div class="label">Types covered</div><div class="value" id="statProjects">0</div></div>
     </div>
 
@@ -1618,6 +1635,7 @@ body.button-rounded .btn{border-radius:9px;}
         <div class="type-toggle">
           <label class="do-label"><input type="radio" name="ltype" value="do"><span>&#10003; Do</span></label>
           <label class="dont-label"><input type="radio" name="ltype" value="dont" checked><span>&#10007; Don't</span></label>
+          <label class="lesson-label"><input type="radio" name="ltype" value="lesson"><span>★ Lesson Learned</span></label>
         </div>
       </div>
 
@@ -5014,6 +5032,7 @@ function suggestOfflineAdvice(descText, type){
 
   // Safe generic fallback instead of returning nothing.
   if(type==='do') return [{score:1,confidence:'General guidance',source:'Offline Civil QA KB',category:'General Best Practice',rootCause:'Good practice appears to be based on controlled execution and inspection.',rectification:'Continue the demonstrated practice and document it as a repeatable quality-control step.',preventive:'Standardize the applicable checklist/method statement briefing so the practice is repeated consistently.',verification:'Use periodic QA spot checks and retain representative records/photos as evidence.'}];
+  if(type==='lesson') return [{score:1,confidence:'General guidance',source:'Offline Civil QA KB',category:'General Lesson Learned',rootCause:'Identify the key condition, decision or event that created this learning and verify it against the actual site records.',rectification:'Document what was learned, what should be repeated or changed, and the practical action required on similar future work.',preventive:'Share the lesson with the relevant team and incorporate the applicable point into briefing, checklist, method statement or planning controls.',verification:'Confirm the lesson has been communicated and that the agreed control is reflected in subsequent similar work.'}];
   return [{score:1,confidence:'General guidance',source:'Offline Civil QA KB',category:'General QA/QC',rootCause:'Probable execution, coordination or supervision gap; confirm the actual cause from site condition before finalizing the lesson.',rectification:'Inspect the affected work against the latest approved drawing/specification/method statement and rectify the nonconforming portion using an approved procedure. Escalate to the responsible engineer where structural integrity, safety or design intent may be affected.',preventive:'Brief the responsible team, strengthen the relevant checklist/hold point and verify materials, setting-out and workmanship before repeating the activity.',verification:'QA/QC to re-inspect the corrected work, record objective evidence and close the observation only after acceptance.'}];
 }
 
@@ -5321,7 +5340,7 @@ function exportLogoCrop(){
   const sh=stageSize/renderedScale;
 
   // 384x384 is more than enough for 48–74px app logos and keeps Firestore small/reliable.
-  const out=384;
+  const out=320;
   const canvas=document.createElement('canvas');
   canvas.width=out;canvas.height=out;
   const ctx=canvas.getContext('2d');
@@ -5330,10 +5349,19 @@ function exportLogoCrop(){
   ctx.imageSmoothingQuality='high';
   ctx.drawImage(logoCropImage,sx,sy,sw,sh,0,0,out,out);
 
-  // WebP preserves transparency and is substantially smaller than raw uploaded images.
-  let data=canvas.toDataURL('image/webp',0.90);
-  if(!data.startsWith('data:image/webp')) data=canvas.toDataURL('image/png');
-  return data;
+  // v1.0.34: PNG is used so transparent company logos stay transparent on every browser/device.
+  // 320px is sufficient for the app's header/welcome/login logo boxes and keeps Firebase payload small.
+  if(out!==320){
+    const small=document.createElement('canvas');
+    small.width=320;small.height=320;
+    const sctx=small.getContext('2d');
+    sctx.clearRect(0,0,320,320);
+    sctx.imageSmoothingEnabled=true;
+    sctx.imageSmoothingQuality='high';
+    sctx.drawImage(canvas,0,0,320,320);
+    return small.toDataURL('image/png');
+  }
+  return canvas.toDataURL('image/png');
 }
 
 logoCropZoom.addEventListener('input',()=>{
@@ -5433,10 +5461,12 @@ function applySettings(){
     if(!img){ img = document.createElement('img'); logoMark.insertBefore(img, logoMark.firstChild); }
     img.src = settings.logo;
     initials.style.display = 'none';
+    logoMark.classList.add('has-logo');
   } else {
     const img = logoMark.querySelector('img');
     if(img) img.remove();
     initials.style.display = 'block';
+    logoMark.classList.remove('has-logo');
   }
 }
 document.getElementById('logoMark').addEventListener('click', () => {
@@ -5488,9 +5518,9 @@ function renderLogoPreviewBox(boxId,textId,data){
   let img=box.querySelector('img');
   if(data){
     if(!img){img=document.createElement('img');box.insertBefore(img,box.firstChild);}
-    img.src=data;txt.style.display='none';
+    img.src=data;txt.style.display='none';box.classList.add('has-logo');
   }else{
-    if(img)img.remove();txt.style.display='inline';
+    if(img)img.remove();txt.style.display='inline';box.classList.remove('has-logo');
   }
 }
 function renderWelcomeLogoPreview(){renderLogoPreviewBox('welcomeLogoPreview','welcomeLogoPreviewText',welcomeLogoDraft);}
@@ -5502,9 +5532,9 @@ function setAccessLogo(boxId,textId,src){
   let img=box.querySelector('img');
   if(src){
     if(!img){img=document.createElement('img');box.insertBefore(img,box.firstChild);}
-    img.src=src;txt.style.display='none';
+    img.src=src;txt.style.display='none';box.classList.add('has-logo');
   }else{
-    if(img)img.remove();txt.style.display='inline';
+    if(img)img.remove();txt.style.display='inline';box.classList.remove('has-logo');
   }
 }
 
@@ -5967,6 +5997,28 @@ if(!CLOUD_ENABLED && lessons.length === 0){
   ];
 }
 
+function lessonTypeLabel(type){
+  if(type==='do')return 'Do';
+  if(type==='dont')return "Don't";
+  if(type==='lesson')return 'Lesson Learned';
+  return 'Lesson Learned';
+}
+function lessonTypeRank(type){
+  return type==='do'?0:type==='dont'?1:2;
+}
+function lessonTypePrintStyle(type){
+  if(type==='do')return {bg:'#e7f6ec',color:'#1f8a4c'};
+  if(type==='dont')return {bg:'#fbeaea',color:'#c23b3b'};
+  return {bg:'#fdf5e5',color:'#8a6a2f'};
+}
+function normalizeLessonType(value){
+  const v=String(value||'').trim().toLowerCase();
+  if(v==='do')return 'do';
+  if(v==="don't"||v==='dont'||v==='do not')return 'dont';
+  if(v==='lesson'||v==='lesson learned'||v==='learned')return 'lesson';
+  return 'dont';
+}
+
 function uniqueValues(key){
   return [...new Set(lessons.map(l => l[key]).filter(Boolean))].sort();
 }
@@ -5977,10 +6029,12 @@ function uniqueValuesFrom(list, key){
 function renderFilters(){
   const dontCount = lessons.filter(l=>l.type==='dont').length;
   const doCount = lessons.filter(l=>l.type==='do').length;
+  const lessonCount = lessons.filter(l=>l.type==='lesson').length;
   document.getElementById('typeFilters').innerHTML = `
     <div class="filter-item ${activeFilters.type==='all'?'active':''}" data-f="type" data-v="all"><span>All</span><span class="count">${lessons.length}</span></div>
     <div class="filter-item ${activeFilters.type==='dont'?'active':''}" data-f="type" data-v="dont"><span>Don't</span><span class="count">${dontCount}</span></div>
     <div class="filter-item ${activeFilters.type==='do'?'active':''}" data-f="type" data-v="do"><span>Do</span><span class="count">${doCount}</span></div>
+    <div class="filter-item ${activeFilters.type==='lesson'?'active':''}" data-f="type" data-v="lesson"><span>Lesson Learned</span><span class="count">${lessonCount}</span></div>
   `;
 
   const buildGroup = (containerId, key) => {
@@ -6005,7 +6059,8 @@ function renderFilters(){
       options=[
         ['all',`All (${lessons.length})`],
         ['dont',`Don't (${dontCount})`],
-        ['do',`Do (${doCount})`]
+        ['do',`Do (${doCount})`],
+        ['lesson',`Lesson Learned (${lessonCount})`]
       ];
     }else{
       options=[['all',`All (${lessons.length})`],...uniqueValues(key).map(v=>[v,`${v} (${lessons.filter(l=>l[key]===v).length})`])];
@@ -6067,6 +6122,7 @@ function renderStats(){
   document.getElementById('statTotal').textContent = lessons.length;
   document.getElementById('statDont').textContent = lessons.filter(l=>l.type==='dont').length;
   document.getElementById('statDo').textContent = lessons.filter(l=>l.type==='do').length;
+  document.getElementById('statLesson').textContent = lessons.filter(l=>l.type==='lesson').length;
   document.getElementById('statProjects').textContent = uniqueValues('project').length;
 }
 
@@ -6092,7 +6148,7 @@ function renderGrid(){
       <div class="lesson-card" data-id="${l.id}">
         <div class="card-photo ${both ? 'dual' : 'single'}">
           ${photoHtml}
-          <span class="badge ${l.type}">${l.type==='do'?"Do":"Don't"}</span>
+          <span class="badge ${l.type}">${lessonTypeLabel(l.type)}</span>
           ${both ? '<span class="photo-count">2 photos</span>' : ''}
         </div>
         <div class="card-body">
@@ -7307,7 +7363,7 @@ function openDetail(id){
   }
   document.getElementById('detailBody').innerHTML = `
     ${photoHtml}
-    <span class="badge ${l.type}" style="position:static;display:inline-block;margin-bottom:12px;">${l.type==='do'?"Do":"Don't"}</span>
+    <span class="badge ${l.type}" style="position:static;display:inline-block;margin-bottom:12px;">${lessonTypeLabel(l.type)}</span>
     <div class="detail-desc">${esc(l.desc || 'কোনো বিবরণ দেওয়া হয়নি।')}</div>
     <div class="detail-grid">
       <div class="detail-item"><div class="k">Type of Item</div><div class="v">${esc(l.project||'-')}</div></div>
@@ -7394,7 +7450,7 @@ document.getElementById('exportExcel').addEventListener('click', () => {
   const rows = lessons.map((l, idx) => {
     const row = {
       ID: l.id,
-      Type: l.type==='do'?'Do':"Don't",
+      Type: lessonTypeLabel(l.type),
       'Type of Item': l.project||'',
       Trade: l.trade||'',
       Title: l.title||'',
@@ -7423,6 +7479,7 @@ document.getElementById('exportPdf').addEventListener('click', () => {
   const area = document.getElementById('printArea');
   const doCount = list.filter(l=>l.type==='do').length;
   const dontCount = list.filter(l=>l.type==='dont').length;
+  const lessonCount = list.filter(l=>l.type==='lesson').length;
   const projects = uniqueValuesFrom(list,'project');
   const trades = uniqueValuesFrom(list,'trade');
   const severities = uniqueValuesFrom(list,'severity');
@@ -7445,6 +7502,7 @@ document.getElementById('exportPdf').addEventListener('click', () => {
       <div class="print-stat total"><div class="n">${list.length}</div><div class="l">Total lessons</div></div>
       <div class="print-stat dont"><div class="n" style="color:#c23b3b">${dontCount}</div><div class="l">Don'ts</div></div>
       <div class="print-stat do"><div class="n" style="color:#1f8a4c">${doCount}</div><div class="l">Do's</div></div>
+      <div class="print-stat lesson"><div class="n" style="color:#8a6a2f">${lessonCount}</div><div class="l">Lesson Learned</div></div>
       <div class="print-stat types"><div class="n">${projects.length}</div><div class="l">Types covered</div></div>
     </div>
     <h3>Types of items</h3>
@@ -7465,7 +7523,7 @@ document.getElementById('exportPdf').addEventListener('click', () => {
   const sortedList = [...list].sort((a,b) => {
     const catA = a.trade || 'Uncategorized', catB = b.trade || 'Uncategorized';
     if(catA !== catB) return catA.localeCompare(catB);
-    if(a.type !== b.type) return a.type === 'do' ? -1 : 1;
+    if(a.type !== b.type) return lessonTypeRank(a.type)-lessonTypeRank(b.type);
     return new Date(b.date) - new Date(a.date);
   });
 
@@ -7480,8 +7538,9 @@ document.getElementById('exportPdf').addEventListener('click', () => {
     const photoEntries = [];
     if(l.photo1) photoEntries.push({label:'Before / Observation', src:l.photo1});
     if(l.photo2) photoEntries.push({label:'After / Reference', src:l.photo2});
-    lessonsHtml += `<div class="print-item ${l.type==='do'?'do':'dont'}">
-      <span class="print-badge" style="background:${l.type==='do'?'#e7f6ec':'#fbeaea'};color:${l.type==='do'?'#1f8a4c':'#c23b3b'};">${l.type==='do'?'Do':"Don't"}</span>
+    const typeStyle=lessonTypePrintStyle(l.type);
+    lessonsHtml += `<div class="print-item ${l.type}">
+      <span class="print-badge" style="background:${typeStyle.bg};color:${typeStyle.color};">${lessonTypeLabel(l.type)}</span>
       <div class="print-title">${i+1}. ${esc(l.title)}</div>
       <div class="print-meta">${esc(l.project||'-')} · ${esc(l.trade||'-')} · ${esc(l.severity||'-')}</div>
       <div class="print-desc">${esc(l.desc||'')}</div>
@@ -7549,7 +7608,7 @@ document.getElementById('importExcelFile').addEventListener('change', (e) => {
 
         const newLesson = {
           id,
-          type: row.Type === 'Do' ? 'do' : 'dont',
+          type: normalizeLessonType(row.Type),
           project: row['Type of Item'] || row.Project || '',
           trade: row.Trade || '',
           title: row.Title || '',

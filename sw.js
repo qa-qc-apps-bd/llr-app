@@ -1,8 +1,9 @@
-const CACHE = 'shl-qa-llr-shell-v1.0.33-preset-ios-safearea';
+const CACHE = 'shl-qa-llr-shell-v1.0.34-icon-logo-lesson-type';
 const SHELL = [
   './',
   './index.html',
   './manifest-v1.0.11.json',
+  './icon-180-apple.png',
   './icon-192-v1.0.11.png',
   './icon-512-v1.0.11.png'
 ];
