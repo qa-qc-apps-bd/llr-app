@@ -1,4 +1,4 @@
-const CACHE = 'shl-qa-llr-shell-v1.0.36-logo-3d';
+const CACHE = 'shl-qa-llr-shell-v1.0.35-approved-icon';
 const SHELL = [
   './',
   './index.html',
