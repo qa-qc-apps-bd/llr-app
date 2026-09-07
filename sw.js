@@ -1,8 +1,10 @@
-const CACHE = 'shl-qa-llr-shell-v1.0.36-logo-3d';
+const CACHE = 'shl-llr-qa-shell-v1.0.40-final';
 const SHELL = [
   './',
   './index.html',
   './manifest-v1.0.11.json',
+  './manifest-v1.0.39.json',
+  './manifest-v1.0.40.json',
   './icon-180-apple.png',
   './icon-192-v1.0.11.png',
   './icon-512-v1.0.11.png'

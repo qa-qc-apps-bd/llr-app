@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SHL QA — Lesson Learned Repository</title>
-<!-- Cross-platform patch v1.0.36: automatic 3D floating treatment for any uploaded branding logo without recoloring -->
+<title>SHL LLR-QA</title>
+<!-- Cross-platform patch v1.0.40 FINAL: embedded new download-page icon + forced iOS/PWA SHL LLR-QA name refresh -->
 <!-- v1.0.11: mobile/web login viewport + keyboard responsiveness fix -->
 <!-- v1.0.7: card view shows both uploaded photos side-by-side -->
 
 <!-- PWA: installable on Android & iOS -->
-<link rel="manifest" href="manifest-v1.0.11.json">
+<link rel="manifest" href="manifest-v1.0.40.json?v=1.0.40">
 <meta name="theme-color" content="#b8863b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="QA LLR">
-<link rel="apple-touch-icon" sizes="180x180" href="icon-180-apple.png">
-<link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-title" content="SHL LLR-QA">
+<meta name="application-name" content="SHL LLR-QA">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180-apple.png?v=1.0.40">
+<link rel="icon" href="icon-192.png?v=1.0.40">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <!-- Firebase (cloud sync so every teammate sees the same shared data) -->
@@ -2304,7 +2306,7 @@ body.button-rounded .btn{border-radius:9px;}
 <div class="overlay" id="aboutOverlay">
   <div class="modal about-modal" id="aboutModal" style="max-width:720px;">
     <div class="modal-header">
-      <h2>ℹ About SHL QA LLR</h2>
+      <h2>ℹ About SHL LLR-QA</h2>
       <button class="close-btn" id="closeAbout">&times;</button>
     </div>
     <div class="modal-body">
@@ -2312,7 +2314,7 @@ body.button-rounded .btn{border-radius:9px;}
         <div class="about-section"><h3>About the App</h3><p id="aboutAppText"></p></div>
         <div class="about-section"><h3>Mission</h3><p id="aboutMissionText"></p></div>
         <div class="about-section"><h3>Vision</h3><p id="aboutVisionText"></p></div>
-        <div class="about-meta">SHL QA — Lesson Learned Repository<br>Shanta Holdings Limited · Setting Standards</div>
+        <div class="about-meta">SHL LLR-QA — Lesson Learned Repository<br>Shanta Holdings Limited · Setting Standards</div>
       </div>
       <div class="about-edit admin-only" id="aboutEdit">
         <div class="field"><label>About the App</label><textarea id="aboutAppInput" style="min-height:120px" placeholder="Describe the purpose and scope of this app..."></textarea></div>
@@ -2354,7 +2356,7 @@ const LOCAL_KEY = 'shl_lesson_learned_repo_v2';
 const SETTINGS_KEY = 'shl_lesson_learned_settings_v2';
 let lessons = []; // secure mode: repository data is loaded only after authenticated access
 const DEFAULT_ABOUT = {
-  appOverview: 'SHL QA — Lesson Learned Repository is an internal knowledge platform for capturing, reviewing and sharing practical QA/QC lessons, good practices and recurring construction issues so teams can learn from past experience and improve future execution.',
+  appOverview: 'SHL LLR-QA — Lesson Learned Repository is an internal knowledge platform for capturing, reviewing and sharing practical QA/QC lessons, good practices and recurring construction issues so teams can learn from past experience and improve future execution.',
   mission: 'To capture practical construction lessons, standardize QA/QC knowledge, support better technical decisions and reduce recurrence of avoidable quality issues through shared learning.',
   vision: 'To build a strong culture of continuous learning and quality excellence where proven lessons are easy to access, reuse and convert into better standards across Shanta Holdings Limited.'
 };
